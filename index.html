@@ -1,85 +1,453 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css" />
-    <title>Najmus Sakib</title>
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Najmus Sakib Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
 
-  <body>
-    <div class="area">
-      <ul class="circles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
+        body {
+            min-height: 100vh;
+            background-color: #EFF3F7;
+        }
 
-      <div class="header">
-        <nav>
-          <a href="index.html" class="logo">
-            <img src="./img/sakib-header-wh.png" />
-          </a>
-          <div class="nav-links">
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Portfolio</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Connect</a></li>
-            </ul>
-          </div>
-        </nav>
-        <div class="left-sidebar"></div>
-        <div class="row">
-          <div class="left-img">
-            <img src="./img/profile.png" />
-          </div>
-          <div class="right-body">
-            <h1 class="slide">I'm Najmus Sakib</h1>
+        /* Navbar Styles */
+        .navbar {
+            width: 260px;
+            background-color: #1B2631;
+            color: white;
+            padding: 30px 20px;
+            position: fixed;
+            height: 100%;
+            overflow-y: auto;
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+            box-shadow: 3px 0 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 28px;
+            font-weight: 600;
+            color: #F0F4F8;
+            letter-spacing: 1px;
+        }
+
+        .navbar ul {
+            list-style: none;
+        }
+
+        .navbar ul li {
+            margin: 20px 0;
+        }
+
+        .navbar ul li a {
+            color: #F0F4F8;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 400;
+            display: block;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: background 0.3s, transform 0.2s, color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #3F4E4F;
+            transform: translateX(5px);
+        }
+
+        .navbar ul li a.active {
+            background-color: #A5C8D6;
+            color: #1B2631;
+            font-weight: 600;
+        }
+
+        /* Content Styles */
+        .content {
+            margin-left: 260px;
+            padding: 60px;
+            width: calc(100% - 260px);
+            background-color: #F0F4F8;
+            transition: margin-left 0.3s, width 0.3s;
+            min-height: 100vh;
+        }
+
+        .content-section {
+            display: none;
+            opacity: 0;
+            animation: fadeIn 0.6s ease-in forwards;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .content-section h2 {
+            color: #1B2631;
+            margin-bottom: 20px;
+            font-size: 34px;
+            font-weight: 700;
+        }
+
+        .content-section h3 {
+            color: #1B2631;
+            margin-bottom: 15px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .content-section p, .content-section ul {
+            color: #3F4E4F;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .content-section ul {
+            padding-left: 25px;
+        }
+
+        .content-section ul li {
+            margin-bottom: 15px;
+        }
+
+        /* Profile Image Styles */
+        .profile-img {
+            max-width: 100%;
+            width: 220px;
+            height: auto;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: block;
+            border: 0.5px solid #A5C8D6;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Contact Buttons */
+        .contact-links li {
+            margin: 12px 0;
+        }
+
+        .contact-links a {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #3F4E4F;
+            color: #F0F4F8;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s, transform 0.2s;
+            font-weight: 500;
+            font-size: 15px;
+        }
+
+        .contact-links a:hover {
+            background-color: #A5C8D6;
+            color: #1B2631;
+            transform: scale(1.05);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            font-size: 30px;
+            background: none;
+            border: none;
+            color: #1B2631;
+            cursor: pointer;
+            padding: 12px;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1100;
+            transition: color 0.3s;
+        }
+
+        .hamburger:hover {
+            color: #A5C8D6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                width: 230px;
+                transform: translateX(-100%);
+            }
+
+            .navbar.active {
+                transform: translateX(0);
+            }
+
+            .content {
+                margin-left: 0;
+                width: 100%;
+                padding: 40px;
+                margin-top: 60px;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .profile-img {
+                width: 160px;
+            }
+
+            .content-section {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .content-section h2 {
+                font-size: 28px;
+            }
+
+            .content-section h3 {
+                font-size: 20px;
+            }
+
+            .content-section p, .content-section ul {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                width: 200px;
+                padding: 20px;
+            }
+
+            .navbar h2 {
+                font-size: 24px;
+            }
+
+            .navbar ul li a {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            .content {
+                padding: 25px;
+            }
+
+            .content-section {
+                padding: 15px;
+            }
+
+            .content-section h2 {
+                font-size: 24px;
+            }
+
+            .content-section h3 {
+                font-size: 18px;
+            }
+
+            .content-section p, .content-section ul {
+                font-size: 14px;
+            }
+
+            .profile-img {
+                width: 120px;
+            }
+
+            .hamburger {
+                font-size: 26px;
+                padding: 10px;
+            }
+
+            .contact-links a {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+        }
+        .download-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #1B2631;
+    color: #F0F4F8;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.download-btn:hover {
+    background-color: #A5C8D6;
+    color: #1B2631;
+    transform: scale(1.05);
+}
+
+    </style>
+</head>
+<body>
+    <!-- Hamburger Menu -->
+    <button class="hamburger">☰</button>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <h2>Najmus Sakib Portfolio</h2>
+        <ul>
+            <li><a href="#cv" class="nav-link active">Curriculum Vitae</a></li>
+            <li><a href="#projects" class="nav-link">My Projects</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content Area -->
+    <main class="content">
+        <section id="cv" class="content-section active">
+            <h2>Curriculum Vitae of Najmus Sakib</h2>
+            <img src="assets/profile_img.gif" alt="Profile Picture" class="profile-img">
             <p>
-              This is my Portfolio website. <br />
-              <br />
-              Also you can follow me on social sites.<br />
-              <br />
-              Feel free to connect with me
+                Hi, I'm Najmus Sakib, a passionate digital marketer and technical problem-solver with a knack for turning ideas into impactful results. With a background in digital marketing, visual editing, front-end development, and network troubleshooting, I help businesses grow their online presence and operate smoothly behind the scenes.
             </p>
-            <div class="social-icon">
-              <div class="icon">
-                <img src="./img/facebook.png" />
-                <a href="https://www.facebook.com/najmusak1b" target="_blank">
-                  <img src="./img/facebook-color.png" />
-                </a>
-              </div>
-              <div class="icon">
-                <img src="./img/telegram.png" />
-                <a href="https://t.me/chuckebe" target="_blank">
-                  <img src="./img/telegram- color.png" />
-                </a>
-              </div>
-              <div class="icon">
-                <img src="./img/twitter.png" />
-                <a href="https://twitter.com/najmusak1b" target="_blank">
-                  <img src="./img/Twitter-color.png" />
-                </a>
-              </div>
-              <div class="icon">
-                <img src="./img/instagram.png" />
-                <a href="https://www.instagram.com/najmusak1b" target="_blank">
-                  <img src="./img/instagram-color.png" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
+            <h3>What I Do</h3>
+            <ul>
+                <li>
+                    <h4>📢 Digital Marketing</h4>
+                    <p>Combining Facebook marketing and off-page SEO to craft high-converting campaigns, build brand authority, and drive organic and paid traffic. From targeted ads to backlink strategies, I deliver measurable growth.</p>
+                </li>
+                <li>
+                    <h4>🎬 Video & Image Editing</h4>
+                    <p>Creating engaging visuals for social media, ads, and websites. From thumbnails to reels, I bring ideas to life with a creative edge.</p>
+                </li>
+                <li>
+                    <h4>🌐 Web Design & Development</h4>
+                    <p>Proficient in WebPress and Webflow for building responsive and visually appealing websites. Strong foundation in HTML and CSS to customize and fine-tune designs as needed.</p>
+                </li>
+                <li>
+                    <h4>🖧 Network Troubleshooting</h4>
+                    <p>Ensuring seamless connectivity, diagnosing and solving network issues, and maintaining IT infrastructure for peak performance.</p>
+                </li>
+            </ul>
+            <h3>Education</h3>
+            <ul>
+                <li>Diploma In Engineering (Electrical) - SSR Institute of Technology and Management, 2019</li>
+                <li>Secondary School Certificate (Science) - Monnoo Textile Mills High School , 2015</li>
+            </ul>
+            <h3>Experience</h3>
+            <ul>
+                <li>IT Executive - KD Systems BD, July 2023 - March 2025</li>
+                <li>Junior Executive - Viser X Limited, June 2021 - July 2022</li>
+            </ul>
+        </section>
+
+        <section id="projects" class="content-section">
+            <h2>My Projects</h2>
+            <p>Below are some of the projects I've explored to hone my skills in digital marketing, web development, and more. While some are ongoing, each has been a valuable learning experience.</p>
+            <ul>
+                <li>
+                    <strong><a href="https://chuckebe.github.io/passgenerate/" target="_blank">Password Generator</a></strong>: Developed an password generator that enabled flexible input parsing (comma- or space-separated words), applying the Fisher-Yates shuffle algorithm for randomization, dynamic word cropping, and targeted character substitutions (e.g., i → 1, a → @) to produce robust passwords.
+                </li>
+                <li>
+                    <strong>Social Media Campaign Prototype</strong>: Designed a targeted Facebook ad campaign for a local business, focusing on audience segmentation and creative visuals. Currently refining analytics integration for better ROI tracking.
+                </li>
+                <li>
+                    <strong>Personal Website Experiment</strong>: Built a responsive website using HTML, CSS, and Webflow to showcase my portfolio. Exploring additional features like a blog section to enhance interactivity.
+                </li>
+                <li>
+                    <strong>SEO Strategy Draft</strong>: Developed an off-page SEO plan with backlink strategies for a mock e-commerce site.
+                </li>
+                
+            </ul>
+        </section>
+
+        <section id="skills" class="content-section">
+            <h2>Skills</h2>
+            <p>I specialize in the following areas:</p>
+            <ul>
+                <li>System Administration (Windows Server, ADDS, DHCP, DNS)</li>
+                <li>Networking (Routing, NAT, VLANs, MikroTik, Cisco)</li>
+                <li>Virtualization (NUMA, Load Balancing, Hyper-V)</li>
+                <li>Security (BitLocker, Credential Guard, IPsec)</li>
+                <li>Operating Systems: Windows, Linux (Parrot, Ubuntu, Red Hat)</li>
+                <li>Tools: Microsoft 365, Google Workspace, Trello, Slack, Canva, Figma</li>
+                <li>CMS & Web Builders: Webflow, WordPress</li>
+                <li>Soft Skills: Communication, Time Management, Problem Solving, Adaptability</li>
+
+            </ul>
+        </section>
+
+        <section id="contact" class="content-section">
+            <h2>Contact</h2>
+            <p>Feel free to reach out to me:</p>
+            <ul class="contact-links">
+                <li><a href="mailto:najmuskib@gmail.com">Email Me</a></li>
+                <!-- <li><a href="[Your LinkedIn URL]" target="_blank">LinkedIn</a></li> -->
+                <li><a href="https://github.com/chuckebe" target="_blank">GitHub</a></li>
+                <li><a href="assets/Najmus_Sakib_CV.pdf" download>Download My CV (PDF)</a>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        // Navbar link interactivity
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+                document.querySelectorAll('.content-section').forEach(section => section.classList.remove('active'));
+                this.classList.add('active');
+                const sectionId = this.getAttribute('href').substring(1);
+                document.getElementById(sectionId).classList.add('active');
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.navbar').classList.remove('active');
+                }
+            });
+        });
+
+        // Hamburger menu toggle
+        document.querySelector('.hamburger').addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.querySelector('.navbar').classList.toggle('active');
+        });
+
+        // Close navbar when clicking outside
+        document.addEventListener('click', function(e) {
+            const navbar = document.querySelector('.navbar');
+            const hamburger = document.querySelector('.hamburger');
+            if (window.innerWidth <= 768 && !navbar.contains(e.target) && !hamburger.contains(e.target)) {
+                navbar.classList.remove('active');
+            }
+        });
+
+        // Reset navbar on resize
+        window.addEventListener('resize', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.innerWidth > 768) {
+                navbar.classList.remove('active');
+                navbar.style.transform = 'translateX(0)';
+            } else {
+                navbar.style.transform = 'translateX(-100%)';
+            }
+        });
+    </script>
+</body>
 </html>
